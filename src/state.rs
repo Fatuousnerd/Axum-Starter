@@ -1,8 +1,7 @@
-#[derive(Clone)]
-pub struct AppState {}
+use std::sync::Arc;
+use libsql::Database;
 
-impl AppState {
-    pub fn new() -> Self {
-        Self {}
-    }
+#[derive(Clone)]
+pub struct AppState {
+    pub db: Arc<Database>,
 }

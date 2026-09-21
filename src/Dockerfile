@@ -12,12 +12,12 @@ COPY --from=planner /app/recipe.json recipe.json
 RUN cargo chef cook --release --recipe-path recipe.json
 
 COPY . .
-RUN cargo build --release --bin my_backend_bin
+RUN cargo build --release --bin axum-starter
 
 # Stage 3: Final minimal runtime environment
 FROM alpine:latest AS runtime
 WORKDIR /app
-COPY --from=builder /app/target/release/my_backend_bin /app/backend
+COPY --from=builder /app/target/release/axum-starter /app/backend
 
 # Run as non-root user for security
 USER 1000
